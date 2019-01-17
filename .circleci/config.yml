@@ -31,13 +31,9 @@ jobs:
       - store_artifacts:
           path: target/hello-mvn-obj.jar
 
-      - run: 
-          command: "echo ${DOCKER_USER}"
-            
-      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker login -u appmanagm  -p AppMan2004zZ
 
-
-      #- run: docker run -d --name db appmanagm/hello:v0.3
+      - run: docker run -d --name db appmanagm/hello:v0.3
          
 
      # build the application image
