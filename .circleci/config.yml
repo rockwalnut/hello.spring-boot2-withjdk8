@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     
-    working_directory: ~/hello-lolmvn-obj
+    working_directory: ~/hello-mvn-obj
 
     docker:
       - image: circleci/openjdk:8-jdk-browsers
@@ -34,6 +34,7 @@ jobs:
      - run: |
          docker login -u $DOCKER_USER -p $DOCKER_PASS
          docker run -d --name db appmanagm/hello:v0.3
+         |
 
      # build the application image
      - run: docker build -t appmanagm/hello:$CIRCLE_BRANCH .
