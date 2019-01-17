@@ -32,9 +32,9 @@ jobs:
           path: target/hello-mvn-obj.jar
 
       - run: 
-          command: echo $DOCKER_USER
+          command: "echo $DOCKER_USER"
             
-      #- run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
 
       #- run: docker run -d --name db appmanagm/hello:v0.3
