@@ -31,11 +31,11 @@ public class BlogService {
 
     public Blog get(String id)
     {
-       //log.info(id); 
+       log.info(id); 
 
        Optional<Blog> blog = blogRepository.findById(id);
        
-       //log.debug(" " + blog.isPresent()); 
+       log.debug(" " + blog.isPresent()); 
 
        return blog.get();
     }
