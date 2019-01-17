@@ -33,12 +33,12 @@ jobs:
 
       - run: 
           command: |
-      
-             echo $DOCKER_USER
-      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+          echo $DOCKER_USER
+            
+      #- run: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
 
-       - run : docker run -d --name db appmanagm/hello:v0.3
+      #- run: docker run -d --name db appmanagm/hello:v0.3
          
 
      # build the application image
