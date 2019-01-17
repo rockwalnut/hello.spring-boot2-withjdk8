@@ -31,7 +31,10 @@ jobs:
       - store_artifacts:
           path: target/hello-mvn-obj.jar
 
-      - run: echo $DOCKER_USER
+      - run: 
+          command: |
+      
+             echo $DOCKER_USER
   #   - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
 
