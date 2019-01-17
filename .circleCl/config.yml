@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     
-    working_directory: ~/hello-mvn-obj
+    working_directory: ~/hello-lolmvn-obj
 
     docker:
       - image: circleci/openjdk:8-jdk-browsers
@@ -14,7 +14,7 @@ jobs:
       - restore_cache:
           key: pdflib-mvn-obj-{{ checksum "pom.xml" }}
       
-      - run: mvn install:install-file -DgroupId=com.hello -DartifactId=hello -Dversion=9.1.2 -Dpackaging=jar -Dfile=asset/lib/hello.jar
+     # - run: mvn install:install-file -DgroupId=com.hello -DartifactId=hello -Dversion=9.1.2 -Dpackaging=jar -Dfile=asset/lib/hello.jar
       
       - run: mvn dependency:go-offline
 
