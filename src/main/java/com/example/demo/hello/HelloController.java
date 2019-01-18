@@ -49,7 +49,7 @@ public class HelloController {
     @RequestMapping("/health")
     public Health health()
     {
-        return new Health("ok", new Date().toString()); //  enviromentProperty.getBuildDate());
+        return new Health("ok", enviromentProperty.getBuildDate());
     } 
 
     //after app is start
