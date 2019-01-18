@@ -36,7 +36,7 @@ jobs:
       - run: 
           command: |
             set -x 
-            docker build -t appmanagm/hello:v0.3 .
+            docker build -t appmanagm/hello:v0.${CIRCLE_BUILD_NUM} .
 
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker push appmanagm/hello:v0.${CIRCLE_BUILD_NUM}
