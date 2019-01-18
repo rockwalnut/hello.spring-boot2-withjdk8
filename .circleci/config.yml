@@ -39,7 +39,7 @@ jobs:
             docker build -t appmanagm/hello:v0.3 .
 
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: docker push appmanagm/hello:v{$CIRCLE_BUILD_NUM}
+      - run: docker push appmanagm/hello:0.0.{$CIRCLE_BUILD_NUM}
 
       #- run: docker run -d --name db appmanagm/hello:v0.3
          
