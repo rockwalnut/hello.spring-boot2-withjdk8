@@ -15,8 +15,8 @@ public class Envi implements Serializable {
 	//@Value("${owner}")
 	//private String owner;
 
-	@Value("${build.date}")
-	private String buildDate;
+	//@Value("${build.date}")
+	//private String buildDate;
 
 	/*@Value("${storage.path}")
 	private String storagePath;
