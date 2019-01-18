@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: /api/
+    context-path: /tli-api/
   port: 8989
 
 spring:
