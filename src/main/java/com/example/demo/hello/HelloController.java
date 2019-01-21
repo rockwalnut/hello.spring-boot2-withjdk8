@@ -61,21 +61,21 @@ public class HelloController {
 
     @GetMapping("/cors-config")
     @RequestMapping("/identify")
-    public List<Identify> Identify()
+    public List<Identify> identify()
     {
         return new Identify().ListFromTLISQL();
     } 
  
     @GetMapping("/cors-config")
     @RequestMapping("/occupation")
-    public List<Occupation> Occupation()
+    public List<Occupation> occupation()
     {
         return new Occupation().ListFromTLISQL();
     } 
 
     @GetMapping("/cors-config")
     @RequestMapping("/prename")
-    public List<Prename> Prename()
+    public List<Prename> prename()
     {
         return new Prename().ListFromTLISQL();
     } 

@@ -1,5 +1,13 @@
 {
     "configurations": [
+        
+        {
+            "type": "java",
+            "name": "Debug (Attach)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 8989
+        },
         {
             "type": "java",
             "name": "CodeLens (Launch) - DemoApplication",
