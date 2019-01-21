@@ -13,6 +13,9 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 
 @ComponentScan(basePackages = {
      "com.example.demo.model",
@@ -38,4 +41,18 @@ public class AppConfig {
 		log.info(">>>>> DataSource Created <<<<<");
 		return DataSourceBuilder.create().type(HikariDataSource.class).build();
 	}*/
+
+
+	@Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+			
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("corsขconfig").allowedOrigins("*");
+            }
+        };
+    }
+
+
 }

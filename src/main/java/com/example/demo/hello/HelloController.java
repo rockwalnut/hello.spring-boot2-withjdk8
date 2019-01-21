@@ -15,6 +15,7 @@ import com.example.demo.uitility.Envi;
 
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +32,7 @@ public class HelloController {
 	@Autowired
 	private BlogService blogService;
 
+    @GetMapping("/cors-config")
     @RequestMapping("/hello")
     public Blog index() {
      
@@ -46,6 +48,7 @@ public class HelloController {
         //return "Hello World with Spring Boot 2 at " + new Date().toString();
     }
 
+    @GetMapping("/cors-config")
     @RequestMapping("/health")
     public Health health()
     {
