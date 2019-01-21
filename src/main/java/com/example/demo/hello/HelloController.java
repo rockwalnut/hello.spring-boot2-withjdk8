@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 
 import com.example.demo.dto.Health;
+import com.example.demo.dto.Identify;
+import com.example.demo.dto.Occupation;
+import com.example.demo.dto.Prename;
 
 //import java.util.Date;
 
@@ -53,6 +56,28 @@ public class HelloController {
     public Health health()
     {
         return new Health("ok", enviromentProperty.getBuildDate());
+    } 
+    
+
+    @GetMapping("/cors-config")
+    @RequestMapping("/identify")
+    public List<Identify> Identify()
+    {
+        return new Identify().ListFromTLISQL();
+    } 
+ 
+    @GetMapping("/cors-config")
+    @RequestMapping("/occupation")
+    public List<Occupation> Occupation()
+    {
+        return new Occupation().ListFromTLISQL();
+    } 
+
+    @GetMapping("/cors-config")
+    @RequestMapping("/prename")
+    public List<Prename> Prename()
+    {
+        return new Prename().ListFromTLISQL();
     } 
 
     //after app is start

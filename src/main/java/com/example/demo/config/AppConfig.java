@@ -49,7 +49,7 @@ public class AppConfig {
 			
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("corsขconfig").allowedOrigins("*");
+                registry.addMapping("cors-config").allowedOrigins("*");
             }
         };
     }
