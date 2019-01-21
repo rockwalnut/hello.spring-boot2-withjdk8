@@ -94,11 +94,16 @@ public class Occupation implements Serializable {
 
                 //replace
                 line = line.substring(line.indexOf("("), line.indexOf(")")).replaceAll(specialChar, "");
+
+                int first = line.indexOf("'");
+                int second = line.indexOf("'", first + 1);
+                String tile = line.substring(first + 1, second);
+
                 String[] words = line.split(",");
 
                 result.add(new Occupation(
                 words[0].replace("'", ""), 
-                words[1].replace("'", ""),  
+                tile, //words[1].replace("'", ""),  
                 words[2].replace("'", ""),  i));
 
                 i++;
