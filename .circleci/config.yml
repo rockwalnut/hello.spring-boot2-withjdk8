@@ -50,7 +50,7 @@ jobs:
       environment:
         - PROJECT_NAME: "my first project"
         - GOOGLE_PROJECT_ID: "aerobic-bonus-229404 "
-        - GOOGLE_COMPUTE_ZONE: "asia-southeast1-b"
+        - GOOGLE_COMPUTE_ZONE: "us-central1-a"
         - GOOGLE_CLUSTER_NAME: "hello-cluster-1"
       steps:
         - checkout
