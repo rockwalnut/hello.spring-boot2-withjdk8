@@ -33,7 +33,7 @@ jobs:
 
       - setup_remote_docker
 
-\      - run: docker build -t appmanagm/hello:0.${CIRCLE_BUILD_NUM} .
+      - run: docker build -t appmanagm/hello:0.${CIRCLE_BUILD_NUM} .
 
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker push appmanagm/hello:0.${CIRCLE_BUILD_NUM}
