@@ -9,6 +9,7 @@ import com.example.demo.dto.Health;
 import com.example.demo.dto.Identify;
 import com.example.demo.dto.Occupation;
 import com.example.demo.dto.Prename;
+import com.example.demo.dto.Result;
 
 //import java.util.Date;
 
@@ -78,6 +79,20 @@ public class HelloController {
     public List<Prename> prename()
     {
         return new Prename().ListFromTLISQL();
+    } 
+
+
+    @GetMapping("/cors-config")
+    @RequestMapping("/master")
+    public Result master()
+    {
+        Result res = new Result();
+
+        res.setIdentifys(new Identify().ListFromTLISQL());        
+        res.setPrenames(new Prename().ListFromTLISQL());      
+        res.setOccupations(new Occupation().ListFromTLISQL());
+
+        return res;
     } 
 
     //after app is start

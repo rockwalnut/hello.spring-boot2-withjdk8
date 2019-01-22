@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import com.example.demo.uitility.Utility;
@@ -14,6 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.google.gson.Gson;
 
 import org.aspectj.weaver.bcel.AtAjAttributes;
+
+import javassist.bytecode.Descriptor.Iterator;
 
 //import com.google.code.gson;
 
@@ -29,7 +32,13 @@ public class Identify implements Serializable {
     
 	//@ApiModelProperty(notes = "Server's status", example = "ok", position = 10)
 	@JsonProperty("id")
-	private String id;
+    private String id;
+    
+    @JsonProperty("code")
+    private String code;
+    
+    @JsonProperty("value")
+	private String value;
 
 	//@ApiModelProperty(notes = "Current server time (milliseconds)", example = "1545579500111", position = 20)
 	@JsonProperty("language")
@@ -43,8 +52,17 @@ public class Identify implements Serializable {
 	@JsonProperty("order")
     private int order;
 
+    @JsonProperty("translations")
+    private Translation translations;
+
     public Identify() {
 
+    }
+
+    public Identify(String _code, Translation _trans) {
+
+        this.translations = _trans;
+        this.code = _code;
     }
     
     public Identify(String _id, String _lang, String _text, int _order) {
@@ -94,7 +112,8 @@ public class Identify implements Serializable {
 
                 result.add(new Identify(
                 words[1].replace("'", ""), 
-                words[2].replace("'", ""),  
+                words[2].replace("'", ""), 
+
                 words[3].replace("'", ""),  i));
 
                 i++;
@@ -105,9 +124,46 @@ public class Identify implements Serializable {
 
         } 
 
-        //String json = new Gson().toJson(result);
+        HashMap<Integer, List<Identify>> hashMap = new HashMap<Integer, List<Identify>>();
+        List<Identify>  vars = new ArrayList<Identify>();
 
-        return result;
+        //loop with reuslt
+        for (Identify pre : result) {
+
+            int id = 0;
+            try {
+                id = Integer.parseInt(pre.id);
+            }
+            catch (Exception ex) {
+
+            }
+
+            if (!hashMap.containsKey(id)) {
+                List<Identify> list = new ArrayList<Identify>();
+                list.add(pre);
+            
+                hashMap.put(id, list);
+            } else {
+                hashMap.get(id).add(pre);
+            }
+        }
+
+        //loop to group
+        for (List<Identify> value : hashMap.values()) {
+            System.out.println("Value = " + value);
+
+            Label en = new Label(value.get(0).text, value.get(0).text);
+            Label th = new Label(value.get(1).text, value.get(1).text);
+
+            Translation trans = new Translation(th, en);
+            Identify temp = new Identify(value.get(0).id, trans);
+            
+            vars.add(temp);
+
+        }
+
+        //String json = new Gson().toJson(result);
+        return vars;
     }
 
 }

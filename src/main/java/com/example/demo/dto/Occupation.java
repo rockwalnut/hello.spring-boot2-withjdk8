@@ -29,7 +29,10 @@ public class Occupation implements Serializable {
     
 	//@ApiModelProperty(notes = "Server's status", example = "ok", position = 10)
 	@JsonProperty("id")
-	private String id;
+    private String id;
+    
+    @JsonProperty("code")
+	private String code;
 
 	//@ApiModelProperty(notes = "Current server time (milliseconds)", example = "1545579500111", position = 20)
 	@JsonProperty("language")
@@ -46,8 +49,17 @@ public class Occupation implements Serializable {
 	@JsonProperty("order")
     private int order;
 
+    @JsonProperty("translations")
+    private Translation translations;
+
     public Occupation() {
 
+    }
+
+    public Occupation(String _code, Translation _trans) {
+
+        this.translations = _trans;
+        this.code = _code;
     }
     
     public Occupation(String _id, String _textth, String _texten, int _order) {
@@ -113,10 +125,21 @@ public class Occupation implements Serializable {
             }
 
         } 
+        List<Occupation>  vars = new ArrayList<Occupation>();
+        //loop with reuslt
+        for (Occupation pre : result) {
+            
+            Label th = new Label(pre.textTH, pre.textTH);
+            Label en = new Label(pre.textEN, pre.textEN);
+
+            Translation trans = new Translation(th, en);
+            Occupation temp = new Occupation(pre.id, trans);
+            
+            vars.add(temp);
+        }
 
         //String json = new Gson().toJson(result);
-
-        return result;
+        return vars;
     }
 
 }

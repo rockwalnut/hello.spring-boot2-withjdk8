@@ -29,7 +29,10 @@ public class Prename implements Serializable {
     
 	//@ApiModelProperty(notes = "Server's status", example = "ok", position = 10)
 	@JsonProperty("id")
-	private String id;
+    private String id;
+    
+    @JsonProperty("code")
+	private String code;
 
 	//@ApiModelProperty(notes = "Current server time (milliseconds)", example = "1545579500111", position = 20)
 	//@JsonProperty("language")
@@ -49,13 +52,25 @@ public class Prename implements Serializable {
 	@JsonProperty("order")
     private int order;
 
+    @JsonProperty("translations")
+    private Translation translations;
+
+
     public Prename() {
 
     }
+
+    public Prename(String _code, Translation _trans) {
+
+        this.translations = _trans;
+        this.code = _code;
+    }
+
     
     public Prename(String _id, String _textth, String _texten, String _gender, int _order) {
        
         this.id = _id;
+
         //this.language = _lang;
         this.textTH = _textth;
         this.textEN = _texten;
@@ -115,9 +130,22 @@ public class Prename implements Serializable {
 
         } 
 
-        //String json = new Gson().toJson(result);
 
-        return result;
+        List<Prename>  vars = new ArrayList<Prename>();
+        //loop with reuslt
+        for (Prename pre : result) {
+            
+            Label th = new Label(pre.textTH, pre.textTH);
+            Label en = new Label(pre.textEN, pre.textEN);
+
+            Translation trans = new Translation(th, en);
+            Prename temp = new Prename(pre.id, trans);
+            
+            vars.add(temp);
+        }
+
+        //String json = new Gson().toJson(result);
+        return vars;
     }
 
 }

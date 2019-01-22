@@ -1,6 +1,6 @@
 INSERT INTO null ("name",value,lang,keyword,sortorder,selected,parentlov,parentvalue,deleted) VALUES 
-('identify_type','','EN','ไม่ระบุ','0','','','','')
-,('identify_type','','TH','ไม่ระบุ','0','','','','')
+('identify_type','01','EN','ไม่ระบุ','0','','','','')
+,('identify_type','01','TH','ไม่ระบุ','0','','','','')
 ,('identify_type','02','EN','บัตรประจำตัวข้าราชการ','','','','','')
 ,('identify_type','02','TH','บัตรประจำตัวข้าราชการ','','','','','')
 ,('identify_type','03','EN','ใบสำคัญต่างด้าว','','','','','')
