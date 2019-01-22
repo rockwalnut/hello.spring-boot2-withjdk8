@@ -60,10 +60,11 @@ public class Prename implements Serializable {
 
     }
 
-    public Prename(String _code, Translation _trans) {
+    public Prename(String _code, String _gender, Translation _trans) {
 
         this.translations = _trans;
         this.code = _code;
+        this.gender = _gender;
     }
 
     
@@ -139,7 +140,7 @@ public class Prename implements Serializable {
             Label en = new Label(pre.textEN, pre.textEN);
 
             Translation trans = new Translation(th, en);
-            Prename temp = new Prename(pre.id, trans);
+            Prename temp = new Prename(pre.id, pre.gender, trans);
             
             vars.add(temp);
         }
