@@ -7,11 +7,11 @@ jobs:
     docker:
       - image: circleci/openjdk:8-jdk-browsers"
 
-    environment:
-      - PROJECT_NAME: "My First Project"
-      - GOOGLE_PROJECT_ID: "aerobic-bonus-229404"
-      - GOOGLE_COMPUTE_ZONE: "us-central1-a"
-      - GOOGLE_CLUSTER_NAME: "hello-cluster-1"
+    # environment:
+    #  - PROJECT_NAME: "My First Project"
+    #  - GOOGLE_PROJECT_ID: "aerobic-bonus-229404"
+    #  - GOOGLE_COMPUTE_ZONE: "us-central1-a"
+    #  - GOOGLE_CLUSTER_NAME: "hello-cluster-1"
 
     steps:
 
