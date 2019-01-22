@@ -57,9 +57,12 @@ jobs:
 
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker push appmanagm/hello:v0.${CIRCLE_BUILD_NUM}
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> parent of 78743ad... to fixed
 
       #- run: docker run -d --name db appmanagm/hello:v0.3
          
