@@ -48,7 +48,7 @@ jobs:
       docker:
         - image: google/cloud-sdk
       environment:
-        - PROJECT_NAME: "my first project"
+        - PROJECT_NAME: "hello"
         - GOOGLE_PROJECT_ID: "aerobic-bonus-229404 "
         - GOOGLE_COMPUTE_ZONE: "us-central1-a"
         - GOOGLE_CLUSTER_NAME: "hello-cluster-1"
@@ -67,7 +67,7 @@ jobs:
         - run: 
             name: Docker build and push
             command: |
-              docker build -t ${PROJECT_NAME} --build-arg COMMIT_REF=23sdfsdf23 --build-arg BUILD_DATE=2018-07-01 .
+              docker build -t hello --build-arg COMMIT_REF=23sdfsdf23 --build-arg BUILD_DATE=2018-07-01 .
               docker tag ${PROJECT_NAME} eu.gcr.io/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:${CIRCLE_SHA1}
               gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://eu.gcr.io
               docker push eu.gcr.io/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:${CIRCLE_SHA1}
