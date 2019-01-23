@@ -46,7 +46,7 @@ jobs:
      
   deploy_to_staging:
       docker:
-        - image: circleci/openjdk:8-jdk-browsers
+        - image: google/cloud-sdk
       environment:
         - PROJECT_NAME: "hello"
         - GOOGLE_PROJECT_ID: "aerobic-bonus-229404 "
