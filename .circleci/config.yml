@@ -13,14 +13,14 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: hello-{{ checksum "pom.xml" }}
+          key: hello-mvn-obj-{{ checksum "pom.xml" }}
       
       - run: mvn dependency:go-offline
 
       - save_cache:
           paths:
             - ~/.m2
-          key: hello-{{ checksum "pom.xml" }}
+          key: hello-mvn-obj-{{ checksum "pom.xml" }}
       
       - run: mvn clean package -Pdev -DskipTests
       
@@ -28,7 +28,7 @@ jobs:
           path: target/surefire-reports
       
       - store_artifacts:
-          path: target/hello.jar
+          path: target/hello-mvn-obj.jar
 
      # - setup_remote_docker
 
