@@ -15,14 +15,14 @@ jobs:
       - restore_cache:
           key: hello-mvn-obj-{{ checksum "pom.xml" }}
       
-      - run: mvn dependency:go-offline
+     # - run: mvn dependency:go-offline
 
       - save_cache:
           paths:
             - ~/.m2
           key: hello-mvn-obj-{{ checksum "pom.xml" }}
       
-      - run: mvn clean package -Pdev -DskipTests
+     # - run: mvn clean package -Pdev -DskipTests
       
       - store_test_results:
           path: target/surefire-reports
