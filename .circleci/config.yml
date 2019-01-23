@@ -27,8 +27,8 @@ jobs:
       - store_test_results:
           path: target/surefire-reports
       
-     # - store_artifacts:
-     #     path: target/hello.jar
+      - store_artifacts:
+          path: target/hello.jar
 
      # - setup_remote_docker
 
@@ -71,12 +71,12 @@ jobs:
               docker build -t appmanagm/hello:0.${CIRCLE_BUILD_NUM} .
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker push appmanagm/hello:0.${CIRCLE_BUILD_NUM}
-        - run: 
-            name: Deploy to Kubernetes
-            command: |
-              envsubst < ${HOME}/project/k8s.yml > ${HOME}/patched_k8s.yml
-              kubectl apply -f ${HOME}/patched_k8s.yml
-              kubectl rollout status deployment/${PROJECT_NAME}
+       # - run: 
+       #     name: Deploy to Kubernetes
+       #     command: |
+       #       envsubst < ${HOME}/project/k8s.yml > ${HOME}/patched_k8s.yml
+       #       kubectl apply -f ${HOME}/patched_k8s.yml
+       #       kubectl rollout status deployment/${PROJECT_NAME}
 
 workflows:
   version: 2
