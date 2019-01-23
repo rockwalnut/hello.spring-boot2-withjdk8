@@ -49,6 +49,9 @@ public class Occupation implements Serializable {
 	@JsonProperty("order")
     private int order;
 
+	@JsonProperty("occ")
+    private String occ;
+    
     @JsonProperty("translations")
     private Translation translations;
 
@@ -56,19 +59,23 @@ public class Occupation implements Serializable {
 
     }
 
-    public Occupation(String _code, Translation _trans) {
+    public Occupation(String _code, Translation _trans, String _occ) {
 
         this.translations = _trans;
         this.code = _code;
+
+        this.occ = _occ;
     }
     
-    public Occupation(String _id, String _textth, String _texten, int _order) {
+    public Occupation(String _id, String _textth, String _texten, int _order, String _occ) {
        
         this.id = _id;
         //this.language = _lang;
         this.textTH = _textth;
         this.textEN = _texten;
         this.order = _order;
+
+        this.occ = _occ;
     }
 
     public List<Occupation> ListFromTLISQL()
@@ -116,7 +123,7 @@ public class Occupation implements Serializable {
                 result.add(new Occupation(
                 words[0].replace("'", ""), 
                 tile, //words[1].replace("'", ""),  
-                words[2].replace("'", ""),  i));
+                words[2].replace("'", ""),  i, words[10].replace("'", "")));
 
                 i++;
             
@@ -133,7 +140,7 @@ public class Occupation implements Serializable {
             Label en = new Label(pre.textEN, pre.textEN);
 
             Translation trans = new Translation(th, en);
-            Occupation temp = new Occupation(pre.id, trans);
+            Occupation temp = new Occupation(pre.id, trans, pre.occ);
             
             vars.add(temp);
         }

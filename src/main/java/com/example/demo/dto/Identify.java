@@ -59,10 +59,12 @@ public class Identify implements Serializable {
 
     }
 
-    public Identify(String _code, Translation _trans) {
+    public Identify(String _code, Translation _trans, int _order) {
 
         this.translations = _trans;
         this.code = _code;
+
+        this.order = _order;
     }
     
     public Identify(String _id, String _lang, String _text, int _order) {
@@ -102,21 +104,21 @@ public class Identify implements Serializable {
         }
         
         //loop
-        int i =0;
+        //int i =0;
         for (String line : lines) {
             try {
 
                 //replace
-                line = line.substring(line.indexOf("("), line.indexOf(")")).replaceAll(specialChar, "");
+                line = line.substring(line.indexOf("(") + 1, line.indexOf(")")).replaceAll(specialChar, "");
                 String[] words = line.split(",");
 
                 result.add(new Identify(
                 words[1].replace("'", ""), 
                 words[2].replace("'", ""), 
 
-                words[3].replace("'", ""),  i));
+                words[3].replace("'", ""),  Integer.parseInt(words[4].replace("'", ""))));
 
-                i++;
+                //i++;
             
             } catch (IndexOutOfBoundsException e) {
                 e.getMessage();
@@ -156,7 +158,7 @@ public class Identify implements Serializable {
             Label th = new Label(value.get(1).text, value.get(1).text);
 
             Translation trans = new Translation(th, en);
-            Identify temp = new Identify(value.get(0).id, trans);
+            Identify temp = new Identify(value.get(0).id, trans, value.get(0).order);
             
             vars.add(temp);
 

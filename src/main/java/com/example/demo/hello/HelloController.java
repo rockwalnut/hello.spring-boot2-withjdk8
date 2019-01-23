@@ -9,6 +9,9 @@ import com.example.demo.dto.Health;
 import com.example.demo.dto.Identify;
 import com.example.demo.dto.Occupation;
 import com.example.demo.dto.Prename;
+import com.example.demo.dto.Product;
+import com.example.demo.dto.ProductList;
+import com.example.demo.dto.Relation;
 import com.example.demo.dto.Result;
 
 //import java.util.Date;
@@ -91,7 +94,17 @@ public class HelloController {
         res.setIdentifys(new Identify().ListFromTLISQL());        
         res.setPrenames(new Prename().ListFromTLISQL());      
         res.setOccupations(new Occupation().ListFromTLISQL());
+        res.setRelations(new Relation().ListFromJSON());
 
+        return res;
+    } 
+
+    @GetMapping("/cors-config")
+    @RequestMapping("/product")
+    public ProductList product()
+    {
+        ProductList res = new ProductList();
+        res.setProducts(new Product().ListFromTLISQL());
         return res;
     } 
 

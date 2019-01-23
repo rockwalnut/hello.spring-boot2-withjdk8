@@ -33,17 +33,21 @@ public class Result implements Serializable {
 
     @JsonProperty("identifys")
     private List<Identify> identifys;
+    
+    @JsonProperty("relations")
+    private List<Relation> relations;
 
     public Result() {
 
     }
 
-    public Result(List<Prename> _pre, List<Occupation> _occ, List<Identify> _iden) {
+    public Result(List<Prename> _pre, List<Occupation> _occ, List<Identify> _iden, List<Relation> _rels) {
 
         this.prenames = _pre;
         this.occupations = _occ;
 
         this.identifys = _iden;
+        this.relations = _rels;
 
     }
 
