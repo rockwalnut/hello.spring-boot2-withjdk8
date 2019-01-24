@@ -33,14 +33,13 @@ jobs:
      - setup_remote_docker
 
      - run:
-         name: Start container and verify is it's working?
+         # name: Start container and verify is it's working?
          command: |
            set -x
            docker build -t appmanagm/hello:0.0.${CIRCLE_BUILD_NUM} .
             
      - run:
-         name: Push Images
+         # name: Push Images
          command: |
            docker login -u $DOCKER_USER -p $DOCKER_PASS
            docker push appmanagm/hello:0.0.${CIRCLE_BUILD_NUM}
-  
