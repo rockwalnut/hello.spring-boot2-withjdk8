@@ -24,7 +24,7 @@ public class Token {
     public static final String CLIENT_ID = "Q0MIVPoE34aW9beSqdZPXHP9NWoa";
     public static final String CLIENT_SECRET = "w7P5E5W7N_wb1LxkMan_pHKXW5oa";
 
-    public static void main(String[] args) {
+    public String get() {
         try {
 
             OAuthClient client = new OAuthClient(new URLConnectionClient());
@@ -41,10 +41,13 @@ public class Token {
             System.out.println(request.getBody());
 
             String token = client.accessToken(request, OAuth.HttpMethod.POST, OAuthJSONAccessTokenResponse.class).getAccessToken();
-            System.out.println(token);
+            
+            return token;
 
         } catch (Exception exn) {
             exn.printStackTrace();
+
+            return null;
         }
     }
 
@@ -53,7 +56,7 @@ public class Token {
         return null;
     }
 
-    public static void trustAllHosts()
+    public void trustAllHosts()
     {
         try
         {

@@ -19,6 +19,7 @@ import com.example.demo.dto.Result;
 import com.example.demo.model.Blog;
 import com.example.demo.service.BlogService;
 import com.example.demo.uitility.Envi;
+import com.example.demo.uitility.Token;
 
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,6 +107,13 @@ public class HelloController {
         ProductList res = new ProductList();
         res.setProducts(new Product().ListFromTLISQL());
         return res;
+    } 
+
+    @GetMapping("/cors-config")
+    @RequestMapping("/token")
+    public String token()
+    {
+        return new Token().get();
     } 
 
     //after app is start
