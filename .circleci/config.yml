@@ -1,7 +1,6 @@
 version: 2
 jobs:
-
-  build_and_test:
+  build:
     
     working_directory: ~/hello-mvn-obj
 
@@ -13,14 +12,14 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: hello-mvn-obj-{{ checksum "pom.xml" }}
+          key: hello-{{ checksum "pom.xml" }}
       
       - run: mvn dependency:go-offline
 
       - save_cache:
           paths:
             - ~/.m2
-          key: hello-mvn-obj-{{ checksum "pom.xml" }}
+          key: hello-{{ checksum "pom.xml" }}
       
       - run: mvn clean package -Pdev -DskipTests
       
@@ -30,16 +29,16 @@ jobs:
       - store_artifacts:
           path: target/hello-mvn-obj.jar
 
-     - setup_remote_docker
+      - setup_remote_docker
 
-     - run:
-         name: Start container and verify is it's working?
-         command: |
+      - run:
+          name: Start container and verify is it's working?
+          command: |
             set -x
-            docker build -t appmanagm/hello:0.0.${CIRCLE_BUILD_NUM} .
+            docker build -t appmanagm/hello:0.${CIRCLE_BUILD_NUM} .
             
-     - run:
-         name: Push Images
-         command: |
+      - run:
+          name: Push Images
+          command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker push appmanagm/hello:0.0.${CIRCLE_BUILD_NUM}
+            docker push appmanagm/hello:0.${CIRCLE_BUILD_NUM}
