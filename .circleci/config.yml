@@ -28,64 +28,19 @@ jobs:
           path: target/surefire-reports
       
       - store_artifacts:
-          path: ./target/hello-mvn-obj.jar
+          path: target/hello-mvn-obj.jar
 
-     # - setup_remote_docker
+     - setup_remote_docker
 
-     # - run:
-     #     name: Start container and verify is it's working?
-     #     command: |
-     #       set -x
-     #       docker build -t appmanagm/hello:0.0.${CIRCLE_BUILD_NUM} .
+     - run:
+         name: Start container and verify is it's working?
+         command: |
+           set -x
+           docker build -t appmanagm/hello:0.0.${CIRCLE_BUILD_NUM} .
             
-     # - run:
-     #     name: Push Images
-     #     command: |
-     #       docker login -u $DOCKER_USER -p $DOCKER_PASS
-     #       docker push appmanagm/hello:0.0.${CIRCLE_BUILD_NUM}
-     
-  deploy_to_staging:
-      docker:
-        - image: google/cloud-sdk
-      environment:
-        - PROJECT_NAME: "hello"
-        - GOOGLE_PROJECT_ID: "aerobic-bonus-229404 "
-        - GOOGLE_COMPUTE_ZONE: "us-central1-a"
-        - GOOGLE_CLUSTER_NAME: "hello-cluster-1"
-      steps:
-        - checkout
-        - run: 
-            name: Setup Google Cloud SDK
-            command: |
-             # sudo apt-get install -qq -y gettext
-              echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
-              gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-              gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-              gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-              gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
-        - setup_remote_docker
-        - run: 
-            name: Docker build and push
-            command: |
-              set -x
-              docker build -t appmanagm/hello:0.${CIRCLE_BUILD_NUM} .
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push appmanagm/hello:0.${CIRCLE_BUILD_NUM}
-       # - run: 
-       #     name: Deploy to Kubernetes
-       #     command: |
-       #       envsubst < ${HOME}/project/k8s.yml > ${HOME}/patched_k8s.yml
-       #       kubectl apply -f ${HOME}/patched_k8s.yml
-       #       kubectl rollout status deployment/${PROJECT_NAME}
-
-workflows:
-  version: 2
-  build_test_deploy:
-    jobs:
-      - build_and_test
-      - deploy_to_staging:
-          requires:
-            - build_and_test
-          filters:
-            branches:
-              only: master
+     - run:
+         name: Push Images
+         command: |
+           docker login -u $DOCKER_USER -p $DOCKER_PASS
+           docker push appmanagm/hello:0.0.${CIRCLE_BUILD_NUM}
+  
