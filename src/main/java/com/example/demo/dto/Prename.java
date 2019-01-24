@@ -25,7 +25,7 @@ public class Prename implements Serializable {
     private static final long serialVersionUID = -9093033121193407925L;
 
     //special without +, +' +"
-    public static final String specialChar = "[`~!@#$%^&*()_+./{}|:<>?]";
+    public static final String specialChar = "[`~!@#$%^&*()_+/{}|:<>?]";
     
 	//@ApiModelProperty(notes = "Server's status", example = "ok", position = 10)
 	@JsonProperty("id")
@@ -118,7 +118,7 @@ public class Prename implements Serializable {
                 String[] words = line.split(",");
 
                 result.add(new Prename(
-                words[0].replace("'", ""), 
+                words[1].replace("'", ""), 
                 words[2].replace("'", ""),  
                 words[3].replace("'", ""), 
                 words[4].replace("'", ""),  i));

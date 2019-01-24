@@ -12,8 +12,11 @@ import com.example.demo.uitility.Utility;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.google.gson.Gson;
-
 import org.aspectj.weaver.bcel.AtAjAttributes;
+
+import org.apache.commons.lang3.StringUtils;
+
+
 
 //import com.google.code.gson;
 
@@ -114,16 +117,25 @@ public class Occupation implements Serializable {
                 //replace
                 line = line.substring(line.indexOf("("), line.indexOf(")")).replaceAll(specialChar, "");
 
-                int first = line.indexOf("'");
-                int second = line.indexOf("'", first + 1);
-                String tile = line.substring(first + 1, second);
+                //int first = line.indexOf("'");
+                //int second = line.indexOf("'", first + 1);
+                //int third = line.indexOf("'", first + 2);
+                //int fourth = line.indexOf("'", first + 3);
+
+                int third = StringUtils.ordinalIndexOf(line,  "'", 3);
+                int fourth = StringUtils.ordinalIndexOf(line,  "'", 4);
+
+                String tile = line.substring(third + 1, fourth);
+
+                int last = line.lastIndexOf(",") + 1;
+                String occ = line.substring(last, last + 1);
 
                 String[] words = line.split(",");
 
                 result.add(new Occupation(
                 words[0].replace("'", ""), 
                 tile, //words[1].replace("'", ""),  
-                words[2].replace("'", ""),  i, words[10].replace("'", "")));
+                words[2].replace("'", ""),  i, occ));
 
                 i++;
             

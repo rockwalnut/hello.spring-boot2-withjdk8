@@ -108,8 +108,21 @@ public class Identify implements Serializable {
         for (String line : lines) {
             try {
 
+                //remove parentess first and lasr 
+                //sub string with ()
+                line = line.substring(line.indexOf("("), line.lastIndexOf(")"));
+
+                /*StringBuilder b = new StringBuilder(line);
+                int c = line.lastIndexOf(")");
+                int d = line.indexOf("(");
+
+                b.replace(c, c + 1, "");
+                b.replace(d, d + 1, "");
+
+                line  = b.toString();*/
+
                 //replace
-                line = line.substring(line.indexOf("(") + 1, line.indexOf(")")).replaceAll(specialChar, "");
+                //line = line.replaceFirst("(", "");
                 String[] words = line.split(",");
 
                 result.add(new Identify(
@@ -118,7 +131,7 @@ public class Identify implements Serializable {
 
                 words[3].replace("'", ""),  Integer.parseInt(words[4].replace("'", ""))));
 
-                //i++;
+
             
             } catch (IndexOutOfBoundsException e) {
                 e.getMessage();

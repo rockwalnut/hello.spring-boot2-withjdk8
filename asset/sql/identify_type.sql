@@ -19,8 +19,8 @@ INSERT INTO null ("name",value,lang,keyword,sortorder,selected,parentlov,parentv
 ,('identify_type','09','TH','ใบรายการจากฐานข้อมูลทะเบียนบัตรประจำตัวประชาชน','9','9','','','')
 ,('identify_type','10','EN','สมุดประจำตัวคนพิการ','10','10','','','')
 ,('identify_type','10','TH','สมุดประจำตัวคนพิการ','10','10','','','')
-,('identify_type','11','EN','ทะเบียนบ้าน [ท.ร. 13]','2','2','','','')
-,('identify_type','11','TH','ทะเบียนบ้าน [ท.ร. 13]','2','2','','','')
+,('identify_type','11','EN','ทะเบียนบ้าน (ท.ร. 13)','2','2','','','')
+,('identify_type','11','TH','ทะเบียนบ้าน (ท.ร. 13)','2','2','','','')
 ;
 INSERT INTO null ("name",value,lang,keyword,sortorder,selected,parentlov,parentvalue,deleted) VALUES 
 ('identify_type','12','EN','บัตรประจำตัวผู้หลบหนีเข้าเมือง','11','11','','','')
