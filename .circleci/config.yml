@@ -12,16 +12,18 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: hello-{{ checksum "pom.xml" }}
+          key: hello-mvn-obj-{{ checksum "pom.xml" }}
+      
+     # - run: mvn install:install-file -DgroupId=com.hello -DartifactId=hello -Dversion=9.1.2 -Dpackaging=jar -Dfile=asset/lib/hello.jar
       
       - run: mvn dependency:go-offline
 
       - save_cache:
           paths:
             - ~/.m2
-          key: hello-{{ checksum "pom.xml" }}
+          key: hello-mvn-obj-{{ checksum "pom.xml" }}
       
-      - run: mvn clean package -Pdev -DskipTests
+      - run: mvn clean package -DskipTests
       
       - store_test_results:
           path: target/surefire-reports
@@ -31,14 +33,20 @@ jobs:
 
       - setup_remote_docker
 
-      - run:
-          name: Start container and verify is it's working?
+      - run: 
           command: |
-            set -x
-            docker build -t appmanagm/hello:0.${CIRCLE_BUILD_NUM} .
-            
-      - run:
-          name: Push Images
-          command: |
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker push appmanagm/hello:0.${CIRCLE_BUILD_NUM}
+            set -x 
+            docker build -t appmanagm/hello:v0.${CIRCLE_BUILD_NUM} .
+
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker push appmanagm/hello:v0.${CIRCLE_BUILD_NUM}
+
+      #- run: docker run -d --name db appmanagm/hello:v0.3
+         
+
+      # build the application image
+      #- run: docker build -t appmanagm/hello:$CIRCLE_BRANCH .
+
+     # deploy the image
+     # - run: docker push appmanagm/hello:$CIRCLE_BRANCH
+
