@@ -47,7 +47,6 @@ jobs:
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker push appmanagm/hello:0.0.${CIRCLE_BUILD_NUM}
 
-
       - run: 
            # name: Setup Google Cloud SDK
             command: |
@@ -58,7 +57,7 @@ jobs:
               gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
               gcloud --quiet container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
      
-        - setup_remote_docker
+      - setup_remote_docker
       - run: 
           #  name: Docker build and push
             command: |
