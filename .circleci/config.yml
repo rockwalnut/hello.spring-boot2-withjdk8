@@ -47,6 +47,13 @@ jobs:
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker push appmanagm/hello:0.0.${CIRCLE_BUILD_NUM}
 
+    - run: 
+            name: Deploy to Kubernetes
+            command: |
+              envsubst < ${HOME}/project/k8s.yml > ${HOME}/patched_k8s.yml
+              kubectl apply -f ${HOME}/patched_k8s.yml
+              kubectl rollout status deployment/${PROJECT_NAME}
+
       #- run: docker run -d --name db appmanagm/hello:v0.3
          
 
