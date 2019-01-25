@@ -47,6 +47,17 @@ jobs:
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker push appmanagm/hello:0.0.${CIRCLE_BUILD_NUM}
 
+      docker:
+        - image: google/cloud-sdk
+    
+    environment:
+      - PROJECT_NAME: "hello"
+      - GOOGLE_PROJECT_ID: "aerobic-bonus-229404 "
+      - GOOGLE_COMPUTE_ZONE: "us-central1-a"
+      - GOOGLE_CLUSTER_NAME: "hello-cluster-1"
+
+      steps:
+        - checkout
       - run: 
            # name: Setup Google Cloud SDK
             command: |
