@@ -1,6 +1,5 @@
 kind: Service
 apiVersion: v1
-kind: Pod
 metadata:
   name: ${PROJECT_NAME}
 spec:
@@ -31,9 +30,6 @@ spec:
       containers:
       - name: ${PROJECT_NAME}
         image: appmanagm/hello:0.${CIRCLE_BUILD_NUM}
-        # Just spin & wait forever
-        command: [ "/bin/bash", "-c", "--" ]
-        args: [ "while true; do sleep 30; done;" ]
         ports:
         - name: http
           containerPort: 8080

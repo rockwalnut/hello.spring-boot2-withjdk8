@@ -15,6 +15,7 @@
 # --
 
 FROM openjdk:8-jre-alpine
+CMD ["sh", "-c", "tail -f /dev/null"]
 RUN  mkdir -p /opt/tomcat/logs/
 # COPY target/hello-0.0.1-SNAPSHOT.jar /app.jar
 RUN  pwd
