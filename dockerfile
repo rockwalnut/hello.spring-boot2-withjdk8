@@ -16,7 +16,7 @@
 
 FROM openjdk:8-jre-alpine
 RUN  mkdir -p /opt/tomcat/logs/
-COPY target/hello-0.0.1-SNAPSHOT.jar /app.jar
+# COPY target/hello-0.0.1-SNAPSHOT.jar /app.jar
 RUN  pwd
 RUN  ls -la .
 RUN  apk add --no-cache curl
