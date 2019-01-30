@@ -38,15 +38,19 @@ public class Result implements Serializable {
     private List<Relation> relations;
 
 
-    @JsonProperty("religions")
-    private List<Religion> religions;
+    //@JsonProperty("religions")
+    //private List<Religion> religions;
+
+    @JsonProperty("companys")
+    private List<Company> companys;
+
 
     public Result() {
 
     }
 
     public Result(List<Prename> _pre, List<Occupation> _occ, List<Identify> _iden, List<Relation> _rels,
-                     List<Religion> _relis) {
+                     List<Company> _comp) {
 
         this.prenames = _pre;
         this.occupations = _occ;
@@ -54,7 +58,7 @@ public class Result implements Serializable {
         this.identifys = _iden;
         this.relations = _rels;
 
-        this.religions = _relis;
+        this.companys = _comp;
 
     }
 

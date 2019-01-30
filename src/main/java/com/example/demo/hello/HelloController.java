@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import com.example.demo.dto.Company;
 import com.example.demo.dto.Health;
 import com.example.demo.dto.Identify;
 import com.example.demo.dto.Occupation;
@@ -97,7 +98,8 @@ public class HelloController {
         res.setPrenames(new Prename().ListFromTLISQL());      
         res.setOccupations(new Occupation().ListFromTLISQL());
         res.setRelations(new Relation().ListFromJSON());
-        res.setReligions(new Religion().ListFromJSON());
+        
+        res.setCompanys(new Company().ListFromJSON());
 
         return res;
     } 
