@@ -2,7 +2,7 @@ version: 2
 jobs:
   build_test_deploy:
     
-    working_directory: ~/hello-mvn-obj
+    #working_directory: ~/hello-mvn-obj
 
     docker:
       - image: circleci/openjdk:8-jdk-browsers
@@ -44,14 +44,14 @@ jobs:
  
   deploy_to_staging:
 
-      working_directory: ~/hello-mvn-obj
+      #working_directory: ~/hello-mvn-obj
 
       docker:
         - image: google/cloud-sdk
     
       environment:
         - PROJECT_NAME: "hello"
-        - GOOGLE_PROJECT_ID: "aerobic-bonus-229404 "
+        - GOOGLE_PROJECT_ID: "aerobic-bonus-229404"
         - GOOGLE_COMPUTE_ZONE: "us-central1-a"
         - GOOGLE_CLUSTER_NAME: "hello-cluster-1"
 
@@ -74,8 +74,9 @@ jobs:
           #  name: Docker build and push
             command: |
               set -x
+              docker build -t appmanagm/hello:0.${CIRCLE_BUILD_NUM} .
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker pull appmanagm/hello:0.0.164
+              docker push appmanagm/hello:0.${CIRCLE_BUILD_NUM}
 
         - run: 
             # name: Deploy to Kubernetes
