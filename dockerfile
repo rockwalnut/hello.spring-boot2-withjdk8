@@ -17,7 +17,9 @@
 FROM openjdk:8-jre-alpine
 CMD ["sh", "-c", "tail -f /dev/null"]
 RUN  mkdir -p /opt/tomcat/logs/
-COPY target/hello-0.0.1-SNAPSHOT.jar /app.jar
+
+#copy from local path to docker hub path
+COPY target/hello-mvn-obj-0.0.1-SNAPSHOT.jar /app.jar
 RUN  pwd
 RUN  ls -la .
 RUN  apk add --no-cache curl
