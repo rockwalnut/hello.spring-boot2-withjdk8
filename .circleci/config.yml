@@ -14,7 +14,7 @@ jobs:
       - restore_cache:
           key: hello-mvn-obj-{{ checksum "pom.xml" }}
       
-      - run: mvn install:install-file -DgroupId=com.hello -DartifactId=hello -Dversion=9.1.2 -Dpackaging=jar -Dfile=asset/lib/hello-mvn-obj.jar
+      # - run: mvn install:install-file -DgroupId=com.hello -DartifactId=hello -Dversion=9.1.2 -Dpackaging=jar -Dfile=asset/lib/hello-mvn-obj.jar
       
       - run: mvn dependency:go-offline
 
@@ -24,6 +24,7 @@ jobs:
           key: hello-mvn-obj-{{ checksum "pom.xml" }}
       
       - run: mvn clean package -DskipTests
+      - run: pwd
       
       - store_test_results:
           path: target/surefire-reports
