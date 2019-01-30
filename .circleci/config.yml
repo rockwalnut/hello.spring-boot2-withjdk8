@@ -2,7 +2,7 @@ version: 2
 jobs:
   build_test_deploy:
     
-    working_directory: ~/hello-mvn-obj
+    # working_directory: ~/hello-mvn-obj
 
     docker:
       - image: circleci/openjdk:8-jdk-browsers
