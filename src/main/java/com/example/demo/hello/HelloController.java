@@ -12,6 +12,7 @@ import com.example.demo.dto.Prename;
 import com.example.demo.dto.Product;
 import com.example.demo.dto.ProductList;
 import com.example.demo.dto.Relation;
+import com.example.demo.dto.Religion;
 import com.example.demo.dto.Result;
 
 //import java.util.Date;
@@ -96,6 +97,7 @@ public class HelloController {
         res.setPrenames(new Prename().ListFromTLISQL());      
         res.setOccupations(new Occupation().ListFromTLISQL());
         res.setRelations(new Relation().ListFromJSON());
+        res.setReligions(new Religion().ListFromJSON());
 
         return res;
     } 

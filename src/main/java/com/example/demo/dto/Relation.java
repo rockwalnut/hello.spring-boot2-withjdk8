@@ -90,10 +90,10 @@ public class Relation implements Serializable {
 
     public List<Relation> ListFromJSON()
     {
-        BufferedReader reader;
+        //BufferedReader reader;
 
-        List<Relation>  result = new ArrayList<Relation>();
-        List<String> lines = new ArrayList<>();
+        //List<Relation>  result = new ArrayList<Relation>();
+        //List<String> lines = new ArrayList<>();
 
         RelationList relations = new RelationList();
 
