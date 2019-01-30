@@ -75,8 +75,8 @@ jobs:
             command: |
               set -x
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker pull appmanagm/hello:0.${CIRCLE_BUILD_NUM} .
-              
+              docker pull appmanagm/hello:0.0.164
+
         - run: 
             # name: Deploy to Kubernetes
             command: |
