@@ -12,7 +12,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: hello-0.0.1-SNAPSHOT-{{ checksum "pom.xml" }}
+          key: hello-mvn-obj-{{ checksum "pom.xml" }}
       
       # - run: mvn install:install-file -DgroupId=com.hello -DartifactId=hello -Dversion=9.1.2 -Dpackaging=jar -Dfile=asset/lib/hello-mvn-obj.jar
       
@@ -21,7 +21,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2
-          key: hello-0.0.1-SNAPSHOT-{{ checksum "pom.xml" }}
+          key: hello-mvn-obj-{{ checksum "pom.xml" }}
       
       - run: mvn clean package -DskipTests
       - run: pwd
@@ -30,7 +30,7 @@ jobs:
           path: target/surefire-reports
       
       - store_artifacts:
-          path: target/hello-0.0.1-SNAPSHOT.jar
+          path: target/hello-mvn-obj.jar
 
       - setup_remote_docker
 
