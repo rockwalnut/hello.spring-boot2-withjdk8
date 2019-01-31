@@ -20,8 +20,8 @@ RUN mkdir -p /opt/tomcat/logs/
 RUN ls -la .
 RUN echo `pwd`/`ls target/hello*`
 #copy from local path to docker hub path
-#COPY target/hello-mvn-obj-0.0.1-SNAPSHOT.jar /app.jar
-COPY hello-mvn-obj-0.0.1-SNAPSHOT.jar app.jar
+COPY target/hello-mvn-obj-0.0.1-SNAPSHOT.jar /app.jar
+#COPY target/hello-mvn-obj.jar /app.jar
 
 RUN  apk add --no-cache curl
 EXPOSE 8080/tcp

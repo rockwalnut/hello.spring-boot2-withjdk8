@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>hello-mvn-obj</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>hello</name>
 	<packaging>jar</packaging>
 	<description>Demo project for Spring Boot</description>
 
@@ -145,6 +145,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
