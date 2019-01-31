@@ -13,7 +13,9 @@ jobs:
 
       - restore_cache:
           key: hello-mvn-obj-0.0.1-SNAPSHOT-{{ checksum "pom.xml" }}
-
+      
+      # - run: mvn install:install-file -DgroupId=com.hello -DartifactId=hello -Dversion=9.1.2 -Dpackaging=jar -Dfile=asset/lib/hello-mvn-obj-0.0.1-SNAPSHOT.jar
+      
       - run: mvn dependency:go-offline
 
       - save_cache:
@@ -57,25 +59,6 @@ jobs:
 
         - checkout
 
-        - restore_cache:
-          key: hello-mvn-obj-0.0.1-SNAPSHOT-{{ checksum "pom.xml" }}
-
-        - run: mvn dependency:go-offline
-
-        - save_cache:
-            paths:
-              - ~/.m2
-            key: hello-mvn-obj-0.0.1-SNAPSHOT-{{ checksum "pom.xml" }}
-        
-        - run: mvn clean package -DskipTests
-        - run: pwd
-        
-        - store_test_results:
-            path: target/surefire-reports
-        
-        - store_artifacts:
-            path: target/hello-mvn-obj-0.0.1-SNAPSHOT.jar
-
         - run: 
             #name: Setup Google Cloud SDK
             command: |
@@ -92,7 +75,11 @@ jobs:
             command: |
                set -x
                docker login -u $DOCKER_USER -p $DOCKER_PASS
-               docker build -t asia.gcr.io/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:${CIRCLE_SHA1} .
+
+               docker pull appmanagm/hello:0.176
+               docker tag appmanagm/hello:0.176 asia.gcr.io/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:${CIRCLE_SHA1}
+
+               # docker build -t asia.gcr.io/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:${CIRCLE_SHA1} .
                gcloud auth print-access-token | docker login -u $DOCKER_USER -p $DOCKER_PASS
                docker push asia.gcr.io/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:${CIRCLE_SHA1}
 
