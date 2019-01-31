@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: ${PROJECT_NAME}
-        image: appmanagm/hello:0.${CIRCLE_BUILD_NUM}
+        image: asia.gcr.io/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:${CIRCLE_SHA1}
         ports:
         - name: http
           containerPort: 8080
