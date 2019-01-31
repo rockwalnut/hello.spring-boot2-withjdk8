@@ -77,7 +77,7 @@ jobs:
                docker login -u $DOCKER_USER -p $DOCKER_PASS
                docker pull appmanagm/hello:0.186
                gcloud auth print-access-token | docker login -u $DOCKER_USER -p $DOCKER_PASS
-               docker push appmanagm/hello:0.186
+               docker push eu.gcr.io/hello:0.186
 
         - run: 
             # name: Deploy to Kubernetes
