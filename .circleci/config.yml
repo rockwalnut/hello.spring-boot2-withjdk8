@@ -32,15 +32,15 @@ jobs:
       - store_artifacts:
           path: target/hello-mvn-obj-0.0.1-SNAPSHOT.jar
 
-      - setup_remote_docker
+      #- setup_remote_docker
 
-      - run: 
-          command: |
-            set -x 
-            docker build -t appmanagm/hello:0.${CIRCLE_BUILD_NUM} .
+      #- run: 
+      #    command: |
+      #      set -x 
+      #      docker build -t appmanagm/hello:0.${CIRCLE_BUILD_NUM} .
 
-      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: docker push appmanagm/hello:0.${CIRCLE_BUILD_NUM}
+      #- run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      #- run: docker push appmanagm/hello:0.${CIRCLE_BUILD_NUM}
  
   deploy_to_staging:
 
@@ -75,9 +75,9 @@ jobs:
             command: |
                set -x
                docker login -u $DOCKER_USER -p $DOCKER_PASS
-               docker pull appmanagm/hello:0.186
+               docker build -t asia.gcr.io/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:${CIRCLE_SHA1} .
                gcloud auth print-access-token | docker login -u $DOCKER_USER -p $DOCKER_PASS
-               docker push eu.gcr.io/hello:0.186
+               docker push asia.gcr.io/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:${CIRCLE_SHA1}
 
         - run: 
             # name: Deploy to Kubernetes
