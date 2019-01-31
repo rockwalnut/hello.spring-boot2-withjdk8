@@ -13,9 +13,7 @@ jobs:
 
       - restore_cache:
           key: hello-mvn-obj-0.0.1-SNAPSHOT-{{ checksum "pom.xml" }}
-      
-      # - run: mvn install:install-file -DgroupId=com.hello -DartifactId=hello -Dversion=9.1.2 -Dpackaging=jar -Dfile=asset/lib/hello-mvn-obj-0.0.1-SNAPSHOT.jar
-      
+
       - run: mvn dependency:go-offline
 
       - save_cache:
@@ -58,6 +56,25 @@ jobs:
       steps:
 
         - checkout
+
+        - restore_cache:
+          key: hello-mvn-obj-0.0.1-SNAPSHOT-{{ checksum "pom.xml" }}
+
+        - run: mvn dependency:go-offline
+
+        - save_cache:
+            paths:
+              - ~/.m2
+            key: hello-mvn-obj-0.0.1-SNAPSHOT-{{ checksum "pom.xml" }}
+        
+        - run: mvn clean package -DskipTests
+        - run: pwd
+        
+        - store_test_results:
+            path: target/surefire-reports
+        
+        - store_artifacts:
+            path: target/hello-mvn-obj-0.0.1-SNAPSHOT.jar
 
         - run: 
             #name: Setup Google Cloud SDK
