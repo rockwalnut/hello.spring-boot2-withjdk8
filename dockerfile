@@ -18,7 +18,7 @@ FROM openjdk:8-jre-alpine
 #CMD ["sh", "-c", "tail -f /dev/null"]
 RUN mkdir -p /opt/tomcat/logs/
 RUN ls -la .
-RUN pwd target
+RUN echo `pwd`/`ls target/hello*`
 #copy from local path to docker hub path
 #COPY target/hello-mvn-obj-0.0.1-SNAPSHOT.jar /app.jar
 COPY hello-mvn-obj-0.0.1-SNAPSHOT.jar app.jar
