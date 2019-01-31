@@ -76,8 +76,8 @@ jobs:
                set -x
                docker login -u $DOCKER_USER -p $DOCKER_PASS
 
-               docker pull appmanagm/hello:0.176
-               docker tag appmanagm/hello:0.176 asia.gcr.io/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:${CIRCLE_SHA1}
+               docker pull appmanagm/hello:0.190
+               docker tag appmanagm/hello:0.190 asia.gcr.io/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:${CIRCLE_SHA1}
 
                # docker build -t asia.gcr.io/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:${CIRCLE_SHA1} .
                gcloud auth print-access-token | docker login -u $DOCKER_USER -p $DOCKER_PASS
