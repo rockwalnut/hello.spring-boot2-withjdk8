@@ -74,7 +74,6 @@ jobs:
             name: Docker build and push
             command: |
                set -x
-              # docker login -u $DOCKER_USER -p $DOCKER_PASS
                gcloud auth configure-docker
                docker pull appmanagm/hello:0.190
                docker tag appmanagm/hello:0.190 asia.gcr.io/${GOOGLE_PROJECT_ID}/${PROJECT_NAME}:${CIRCLE_SHA1}
