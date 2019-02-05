@@ -27,6 +27,7 @@ import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.qos.logback.classic.Logger;
@@ -115,9 +116,9 @@ public class HelloController {
 
     @GetMapping("/cors-config")
     @RequestMapping("/token")
-    public String token()
+    public String token(@RequestParam(name = "env", required = false) String env)
     {
-        return new Token().get();
+        return new Token().get(env);
     } 
 
     //after app is start

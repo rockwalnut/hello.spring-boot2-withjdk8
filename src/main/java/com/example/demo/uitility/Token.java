@@ -20,21 +20,42 @@ import org.apache.oltu.oauth2.common.message.types.GrantType;
 
 public class Token {
 
-    public static final String TOKEN_REQUEST_URL = "https://dev-tlprompt-api.thailife.com:8243/token";
-    public static final String CLIENT_ID = "Q0MIVPoE34aW9beSqdZPXHP9NWoa";
-    public static final String CLIENT_SECRET = "w7P5E5W7N_wb1LxkMan_pHKXW5oa";
+    //public static final String TOKEN_REQUEST_URL = "https://dev-tlprompt-api.thailife.com:8243/token";
+    //public static final String CLIENT_ID = "Q0MIVPoE34aW9beSqdZPXHP9NWoa";
+    //public static final String CLIENT_SECRET = "w7P5E5W7N_wb1LxkMan_pHKXW5oa";
 
-    public String get() {
+    public String tokenRequestUrl;
+    public String clientId;
+    public String clientSecret;
+
+    public Token()
+    {
+        //default
+        tokenRequestUrl = "https://dev-tlprompt-api.thailife.com:8243/token";
+        clientId = "Q0MIVPoE34aW9beSqdZPXHP9NWoa";
+        clientSecret = "w7P5E5W7N_wb1LxkMan_pHKXW5oa";
+    }
+
+
+    public String get(String env) {
+
+        if(env.equals("sit"))
+        {
+            tokenRequestUrl = "http://sit-tlprompt-api.thailife.com:8280/token";
+            clientId = "8qI2SWIBhZKye_qz0zj0n70tRfQa";
+            clientSecret = "D19TfD1t6NpxyqH3XoKTpHzdKtca";
+        }
+
         try {
 
             OAuthClient client = new OAuthClient(new URLConnectionClient());
 
             trustAllHosts();
 
-            OAuthClientRequest request = OAuthClientRequest.tokenLocation(TOKEN_REQUEST_URL)
+            OAuthClientRequest request = OAuthClientRequest.tokenLocation(tokenRequestUrl)
             .setGrantType(GrantType.CLIENT_CREDENTIALS)
-            .setClientId(CLIENT_ID)
-            .setClientSecret(CLIENT_SECRET)
+            .setClientId(clientId)
+            .setClientSecret(clientSecret)
             //.setScope(SCOPE)
             .buildBodyMessage();
 
