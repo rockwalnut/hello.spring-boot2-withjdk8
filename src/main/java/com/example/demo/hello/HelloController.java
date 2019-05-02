@@ -116,7 +116,10 @@ public class HelloController {
 
     @GetMapping("/cors-config")
     @RequestMapping("/token")
-    public String token(@RequestParam(name = "env", required = false) String env)
+    public String token(
+        @RequestParam(name = "env", required = false) 
+        String env
+        )
     {
         return new Token().get(env);
     } 
